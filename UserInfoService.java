@@ -21,12 +21,12 @@ public class UserInfoService {
 	}
 
 	// To add new user
-	void addNewUser(@RequestBody UserInfo user) {
+	void addNewUser( UserInfo user) {
 
 		repo.save(user);
 	}
 
-	List<UserInfo> getUserByUserName(@PathVariable String name) {
+	List<UserInfo> getUserByUserName( String name) {
 
 		return repo.findByUserName(name);
 	}
