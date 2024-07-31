@@ -13,10 +13,10 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(
-            @RequestParam("email") String email,
-            @RequestParam("password") String password) {
+    public ResponseEntity<String> register(@RequestBody User user) {
 
+    	String email = user.getEmail();
+    	String password = user.getPassword();
         String result = userService.registerUser(email, password);
         if (result.equals("Registration successful")) {
             return ResponseEntity.ok(result);

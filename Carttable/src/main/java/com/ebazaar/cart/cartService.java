@@ -25,11 +25,12 @@ public class cartService {
         return CartRepository.save(cart);
     }
 
-    public void updateQuantity(Integer userID,Cart cart) {
-//        Cart cartItem = CartRepository.findByUserId(userId, productId)
-//                .orElseThrow(() -> new RuntimeException("Item not found in cart"));
-//        
-//        cartItem.setQuantity(quantity);
+    public void updateQuantity(Long cartID,Cart cart) {
+         cart = (Cart) CartRepository.findByCartId(cartID);
+               // .orElseThrow(() -> new RuntimeException("Item not found in cart"));
+        LocalDateTime localDateTime = LocalDateTime.now();
+        cart.setAddedAt(localDateTime );
+     
         CartRepository.save(cart);
     }
 
@@ -37,12 +38,12 @@ public class cartService {
         CartRepository.deleteById(id);
     }
 
-    public Optional<Cart> getCartItem(int cartId) {
+    public List<Cart> getCartItem(Long cartId) {
         return CartRepository.findByCartId(cartId);
             //    .orElseThrow(() -> new RuntimeException("Item not found in cart"));
     }
 
-	public Optional<Cart> getCartItemByUserId(int userId) {
+	public List<Cart> getCartItemByUserId(Long  userId) {
 		return CartRepository.findByUserId(userId);
 	}
 

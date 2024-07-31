@@ -1,87 +1,91 @@
 package com.ebazaar.cart;
 
+import java.time.LocalDateTime;
+
+import com.ebazaar.product.Product;
+import com.ebazaar.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import com.ebazaar.user.User;
 
 @Entity
 @Table(name = "Cart")
 public class Cart {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long cartId;
 
-    @OneToOne
-    private User userId;
+	@ManyToOne
+	private User user;
 
-    @Column(name = "ProductID", nullable = false)
-    private Long productId;
+	@ManyToOne
+	private Product product;
 
-    @Column(name = "Quantity", nullable = false)
-    private Integer quantity;
-    
-    @Column(name = "Price",nullable=false)
-    private Long price;
-    
-    @Column(name = "AddedAt", nullable = false, updatable = false)
-    private LocalDateTime addedAt;
+	private Integer quantity;
+	private Long price;
+	private LocalDateTime addedAt;
 
-    // Getters and Setters
-    public Long getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
-    }
-
-   
-
-    public User getUserId() {
-		return userId;
+	
+	public Cart() {
+		
+	}
+	public Cart(Long cartId, Long user, Integer product, Integer quantity, Long price, LocalDateTime addedAt) {
+		super();
+		this.cartId = cartId;
+		this.user = new User(user);
+		this.product = new Product(product);
+		this.quantity = quantity;
+		this.price = price;
+		this.addedAt = addedAt;
 	}
 
-	public void setUserId(User userId) {
-		this.userId = userId;
+	@Override
+	public String toString() {
+		return "Cart [cartId=" + cartId + ", user=" + user + ", product=" + product + ", quantity=" + quantity
+				+ ", price=" + price + ", addedAt=" + addedAt + "]";
 	}
 
-	public Long getProductId() {
-        return productId;
-    }
+	public Long getCartId() {
+		return cartId;
+	}
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+	public void setCartId(Long cartId) {
+		this.cartId = cartId;
+	}
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public LocalDateTime getAddedAt() {
-        return addedAt;
-    }
+	public Product getProduct() {
+		return product;
+	}
 
-    public void setAddedAt(LocalDateTime localDateTime) {
-        this.addedAt = localDateTime;
-    }
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
 
 	public Long getPrice() {
 		return price;
@@ -91,24 +95,12 @@ public class Cart {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "Cart [cartId=" + cartId + ", userId=" + userId + ", productId=" + productId + ", quantity=" + quantity
-				+ ", price=" + price + ", addedAt=" + addedAt + "]";
+	public LocalDateTime getAddedAt() {
+		return addedAt;
 	}
 
-	public Cart(Long cartId,Long id, Long productId, Integer quantity, Long price, LocalDateTime addedAt) {
-		super();
-		this.cartId = cartId;
-		this.userId = new User(id);
-		this.productId = productId;
-		this.quantity = quantity;
-		this.price = price;
+	public void setAddedAt(LocalDateTime addedAt) {
 		this.addedAt = addedAt;
 	}
 
-	public Cart() {
-		super();
-	}
-    
 }
