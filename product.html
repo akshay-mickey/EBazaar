@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="product.js" defer></script>
+</head>
+<body>
+    <h1>Product Management</h1>
+    
+    <form id="create-product-form">
+        <h2>Create New Product</h2>
+        <label for="product-name">Name:</label>
+        <input type="text" id="product-name" required>
+        <label for="product-price">Price:</label>
+        <input type="number" step="0.01" id="product-price" required>
+        <label for="product-description">Description:</label>
+        <textarea id="product-description" required></textarea>
+        <label for="product-image-url">Image URL:</label>
+        <input type="text" id="product-image-url" required>
+        <label for="product-category">Category ID:</label>
+        <input type="number" id="product-category" required>
+        <button type="submit">Create Product</button>
+    </form>
+    
+    <h2>Products</h2>
+    <ul id="product-list"></ul>
+
+    <div id="update-product" style="display:none;">
+        <h2>Update Product</h2>
+        <form id="update-product-form">
+            <input type="hidden" id="update-product-id">
+            <label for="update-product-name">Name:</label>
+            <input type="text" id="update-product-name" required>
+            <label for="update-product-price">Price:</label>
+            <input type="number" step="0.01" id="update-product-price" required>
+            <label for="update-product-description">Description:</label>
+            <textarea id="update-product-description" required></textarea>
+            <label for="update-product-image-url">Image URL:</label>
+            <input type="text" id="update-product-image-url" required>
+            <label for="update-product-category">Category ID:</label>
+            <input type="number" id="update-product-category" required>
+            <button type="submit">Update Product</button>
+        </form>
+    </div>
+</body>
+</html>
